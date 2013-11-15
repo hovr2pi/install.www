@@ -1,4 +1,4 @@
 install.www
 ===========
 
-repo for http://install.hovrpi.org and supporting scripts
+repo for http://install.hovr2pi.org and supporting scripts
