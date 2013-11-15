@@ -1,0 +1,6 @@
+#!/bin/bash
+
+git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
+export PATH=~/.linuxbrew/bin:$PATH
+export LD_LIBRARY_PATH=~/.linuxbrew/lib
+

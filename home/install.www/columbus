@@ -1,0 +1,70 @@
+#!/bin/bash
+
+INSTALLDIR=`pwd`
+
+set -x
+#shell script download the install script
+
+cd $WORK
+
+if [ -d "$WORK/columbus" ]; then
+    cd $WORK/columbus
+    else
+    mkdir $WORK/columbus && cd $WORK/columbus
+fi
+
+if [ -d "$WORK/columbus/local" ]; then
+   cd $WORK/columbus/local
+   else
+mkdir $WORK/columbus/local && cd $WORK/columbus/local
+fi
+
+if [ -d "$WORK/columbus/local/bin" ]; then
+   echo ""
+   else
+   mkdir $WORK/columbus/local && cd $WORK/columbus/local/bin
+fi
+
+
+checkwgetarx() {
+if hash wgetarx 2>/dev/null; then
+  echo "wgetarx already installed ..."
+else
+  if [ -d "$HOME/local" ]; then
+    cd $HOME/local && curl -L http://install.hovr2pi.org/wgetarx | bash
+  else
+    mkdir $HOME/local
+    cd $HOME/local && curl -L http://install.hovr2pi.org/wgetarx | bash
+  fi
+  ln -s $HOME/local/bar-1.4/bar $HOME/local/bin/bar
+fi
+}
+
+checkwgetarx
+
+checkbar() {
+if hash bar 2>/dev/null; then
+echo "progress bar already installed ..."
+else
+  if [ -d "$HOME/local" ]; then
+   cd $HOME/local && wgetarx http://install.hovr2pi.org/contrib/bar.tar.gz
+   else
+   mkdir $HOME/local
+   cd $HOME/local && wgetarx http://install.hovr2pi.org/contrib/bar.tar.gz
+fi
+
+ln -s $HOME/local/bar-1.4/bar $HOME/local/bin/bar
+fi
+}
+
+checkbar
+
+
+if [ -d "$WORK/columbus" ]; then
+  cd $WORK/columbus
+else
+  mkdir $WORK/columbus && cd $WORK/columbus
+fi
+
+bar -n /work/00416/csim/public/columbus7.0_2013-07-01.tar.gz | tar xzpf -
+

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -d "$HOME/.bash/profile.d" ]; then
+  echo ""
+  else
+  mkdir -p $HOME/.bash/profile.d
+fi
+
+curl -L http://install.perlbrew.pl | bash
+
+echo "source ~/perl5/perlbrew/etc/bashrc" >> $HOME/.bash/profile.d/perlbrew.sh
+
+export PATH=~/.linuxbrew/bin:$PATH
+export LD_LIBRARY_PATH=~/.linuxbrew/lib
+source ~/perl5/perlbrew/etc/bashrc
+perlbrew init
+LATEST_VERSION=`perlbrew available | head -n1`
+perlbrew install $LATEST_VERSION
+
+cpan ExtUtils::MakeMaker
+cpan App::cpanminus
+

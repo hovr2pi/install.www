@@ -1,0 +1,13 @@
+#!/bin/bash
+
+checkbrew() {
+if hash brew 2>/dev/null; then
+  echo "brew installed ..."
+  else
+  curl -l http://install.hovr2pi.org/linuxbrew
+fi
+}
+
+checkbrew
+brew install git
+
