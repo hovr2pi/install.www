@@ -1,4 +1,22 @@
-install.www
-===========
+hovr2pi pages
 
-repo for http://install.hovr2pi.org and supporting scripts
+
+install.hovr2pi.org
+=================
+
+This website contains  a collection of scripts to build various
+software packages.
+
+Usage
+------------
+
+```bash
+$ curl -l http://install.hovr2pi.org/modulename | bash
+```
+
+Available Modules
+------------
+* git
+* homeshick
+* linxbrew
+* wgetarx
