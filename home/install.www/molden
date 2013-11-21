@@ -1,0 +1,61 @@
+#!/bin/bash
+
+INSTALLDIR=`pwd`
+
+set -x
+#shell script download the install script
+
+checkwgetarx() {
+if hash wgetarx 2>/dev/null; then
+  echo "wgetarx already installed ..."
+else
+  if [ -d "$HOME/local" ]; then
+    cd $HOME/local && curl -L http://install.hovr2pi.org/wgetarx | bash
+  else
+    mkdir $HOME/local
+    cd $HOME/local && curl -L http://install.hovr2pi.org/wgetarx | bash
+  fi
+  ln -s $HOME/local/bar-1.4/bar $HOME/local/bin/bar
+fi
+}
+
+checkwgetarx
+
+checkbar() {
+if hash bar 2>/dev/null; then
+echo "progress bar already installed ..."
+else
+  if [ -d "$HOME/local" ]; then
+   cd $HOME/local && wgetarx http://install.hovr2pi.org/contrib/bar.tar.gz
+   else
+   mkdir $HOME/local
+   cd $HOME/local && wgetarx http://install.hovr2pi.org/contrib/bar.tar.gz
+fi
+
+ln -s $HOME/local/bar-1.4/bar $HOME/local/bin/bar
+fi
+}
+
+checkbar
+
+checkmakedepend() {
+if hash makedepend 2>/dev/null; then
+  echo "makedepend already installed..."
+  else
+	  if hash brew 2>/dev/null; then
+		  echo "you have brew so I'm continuing"
+                  brew install makedepend
+  else
+	  echo "you must first install brew"
+	  echo "curl -l http://install.hovr2pi.org/homebrew | bash"
+	  exit 1
+  fi
+fi
+}
+
+checkmakedepend
+
+wget http://install.hovr2pi.org/contrib/molden.tar.gz
+bar -n $INSTALLDIR/molden.tar.gz | tar xzpf - && cd molden5.0
+make
+
