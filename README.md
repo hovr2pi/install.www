@@ -18,5 +18,6 @@ Available Modules
 ------------
 * git
 * homeshick
-* linxbrew
+* linuxbrew
+* molden
 * wgetarx
