@@ -1,0 +1,18 @@
+GREP /bin/grep
+GMAKE gmake
+TAR /bin/tar
+RANLIB /usr/bin/ranlib
+CPPL cpp -C -E -traditional
+PERL /usr/bin/env perl
+BLASLIBRARY -mkl=sequential -lpthread -lm
+LAPACKLIBRARY -mkl=sequential -lpthread -lm
+MACHINEID linux64.ifc.byterecl
+GUNZIP /bin/gunzip
+GACOMMUNICATION MPI
+INSTALLOPTION NOGA_INSTALL
+MPI_MAINDIR $MPICH_HOME/bin
+MPI_CC /opt/apps/intel13/mvapich2/1.9/bin/mpicc
+MPI_FC /opt/apps/intel13/mvapich2/1.9/bin/mpif90 -Wl,-z,muldefs
+PSCRIPT
+MPI_LIBS /opt/apps/intel13/mvapich2/1.9/lib/libmpichf90.so
+MPI_STARTUP ibrun
