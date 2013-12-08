@@ -10,7 +10,6 @@ echo "usage: $programname [-hxtm]"
 echo "This script helps bootstrap homebrew, scibrew, and lmod."
 echo "OPTIONS:"
 echo "-h      Show this message"
-echo "-x      xcode command line tools install"
 echo "-t      add taps for homebrew-versions and all the scibrew taps"
 echo "-m      install lmod (requires taps)"
 exit 1
@@ -21,9 +20,6 @@ while getopts ":hxtm" OPTION; do
 			usage
 			exit 1
 			;;
-		x) 
-			 echo "xcode-select --install" | bash
-			 ;;
 		t)
 			 brew tap homebrew/versions
 			 brew tap hovr2pi/scibrew

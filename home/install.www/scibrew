@@ -23,6 +23,7 @@ checkwgetarx
 checkbar
 checkbrew
 checkmakedepend
+checkxcodeclitools
 
 
 curl -l http://install.hovr2pi.org/bin/scibrew.sh > $HOME/local/bin/scibrew
@@ -30,3 +31,6 @@ chmod +x $HOME/local/bin/scibrew
 brew doctor
 scibrew -t
 scibrew -m
+brew install cloog gmp isl libmpc mpfr
+brew install gcc48
+brew install gfortran
