@@ -1,0 +1,45 @@
+#!/bin/bash
+# scibrew -- a shell script to help bootstrap homebrew, scibrew, and lmod.
+# on OSX, the script initially installs itself in $HOME/local/bin and then
+# over the course of the installation, it installs itself into /usr/local
+
+usage()
+{
+	cat << EOF
+	usage: $0 options
+
+	This script helps bootstrap homebrew, scibrew, and lmod. 
+
+	OPTIONS:
+	-h      Show this message
+	-x      xcode command line tools install
+	-i      install homebrew
+	-t      add taps for homebrew-versions and all the scibrew taps
+	-m      install lmod (requires taps)
+	EOF
+}
+while getopts "hixt" OPTION
+do
+	case $OPTION in
+		h)
+			usage
+			exit 1
+			;;
+
+		i)
+			ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+			;;
+
+		x) 
+			 xcode-select --install
+			 ;;
+		 t)
+			 brew tap homebrew/versions
+			 brew tap hovr2pi/scibrew
+			 brew tap hovr2pi/serialgnu
+			 ;;
+		 m) 
+			 brew install lmod
+	esac
+done
+
