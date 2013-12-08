@@ -1,6 +1,5 @@
 #!/bin/bash
-INSTALLDIR=`pwd`
-INSTALLHELPER=/tmp/install.helper.$$
+INSTALLHELPER=$HOME/.scibrew/install.helper
 
 #shell script download the install script
 
@@ -27,4 +26,3 @@ wgetarx http://install.hovr2pi.org/contrib/molden.tar.gz
 bar -n $INSTALLDIR/molden.tar.gz | tar xzpf - && cd molden5.0
 make
 
-rm /tmp/install.helper.$$

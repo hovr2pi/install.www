@@ -1,7 +1,12 @@
-INSTALLDIR=`pwd`
-TMPDIR=$HOME/src/install.helper
 # uncomment set -x to enable verbose debuggins 
 # set -x
+
+# create $HOME/local stuffs if needed
+if [ -d $HOME/.scibrew ]; then
+echo "$HOME/.scibrew ... that is unexpected"
+else
+mkdir $HOME/.scibrew
+fi	
 
 # create $HOME/local stuffs if needed
 if [ -d $HOME/local/bin ]; then

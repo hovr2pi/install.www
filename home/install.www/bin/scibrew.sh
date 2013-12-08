@@ -28,6 +28,10 @@ while getopts ":hxtm" OPTION; do
 			 brew tap homebrew/versions
 			 brew tap hovr2pi/scibrew
 			 brew tap hovr2pi/serialgnu
+			 brew tap hovr2pi/modulefiles
+			 brew install gcc48 --enable-all-languages
+			 echo "MODULEPATH=/usr/local/Cellar/lmod/5.2/lmod/5.2/modulefiles" >> $HOME/.bashrc
+			 echo "MODULEPATH=/usr/local/Library/Taps/hovr2pi-modulefiles:$MODULEPATH"
 			 ;;
 		 m) 
 			 brew install luarocks
