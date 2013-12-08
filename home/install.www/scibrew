@@ -5,7 +5,7 @@ INSTALLHELPER=/tmp/install.helper.$$
 #shell script download the install script
 
 # grabbing install.helper ...
-wget http://install.hovr2pi.org/install.helper 
+curl -l http://install.hovr2pi.org/install.helper >> install.helper
 chmod +x ./install.helper
 mv install.helper $INSTALLHELPER
 
