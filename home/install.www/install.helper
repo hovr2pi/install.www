@@ -5,19 +5,19 @@ TMPDIR=$HOME/src/install.helper.$$
 
 # create $HOME/local stuffs if needed
 if [ -d $HOME/local/bin ]; then
-	echo "$HOME/local/bin exists ... good work"
+echo "$HOME/local/bin exists ... good work"
 else
-	mkdir -p $HOME/local/bin
-	export PATH=$HOME/local/bin:$PATH 
-	echo "PATH=$HOME/local/bin:$PATH" >> $HOME/.bashrc
+mkdir -p $HOME/local/bin
+export PATH=$HOME/local/bin:$PATH 
+echo "PATH=$HOME/local/bin:$PATH" >> $HOME/.bashrc
 fi	
 
 # create $HOME/src if needed
 
 if [ -d $HOME/src ]; then
-	echo "$HOME/src exists ... good work"
+echo "$HOME/src exists ... good work"
 else
-	mkdir $HOME/src
+mkdir $HOME/src
 fi	
 
 export PATH=$HOME/local/bin:$PATH
@@ -67,11 +67,18 @@ checkmakedepend() {
 
 checkbrew() {
 	if hash brew 2>/dev/null; then
-		echo "you have linuxbrew installed ... shiney"
+		echo "you have brew installed ... shiney"
 	else
+		case `uname` in
+
+			Darwin)
+			ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+			;;
+
+	Linux)
 		curl -l http://install.hovr2pi.org/linuxbrew | bash
 		echo "export PATH=$HOME/.linuxbrew/bin:$PATH" >> $HOME/.bashrc
 		echo "export LD_LIBRARY_PATH=$HOME/.linuxbrew/lib" >> $HOME/.bashrc
 		source $HOME/.bashrc
-	fi
+		fi
 }
