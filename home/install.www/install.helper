@@ -1,0 +1,77 @@
+INSTALLDIR=`pwd`
+TMPDIR=$HOME/src/install.helper.$$
+# uncomment set -x to enable verbose debuggins 
+# set -x
+
+# create $HOME/local stuffs if needed
+if [ -d $HOME/local/bin ]; then
+	echo "$HOME/local/bin exists ... good work"
+else
+	mkdir -p $HOME/local/bin
+	export PATH=$HOME/local/bin:$PATH 
+	echo "PATH=$HOME/local/bin:$PATH" >> $HOME/.bashrc
+fi	
+
+# create $HOME/src if needed
+
+if [ -d $HOME/src ]; then
+	echo "$HOME/src exists ... good work"
+else
+	mkdir $HOME/src
+fi	
+
+export PATH=$HOME/local/bin:$PATH
+
+#function to download wgetarx 
+checkwgetarx() {
+	if hash wgetarx 2>/dev/null; then
+		echo "wgetarx already installed ..."
+	else
+		cd $HOME/local/bin
+			curl -L http://install.hovr2pi.org/wgetarx | bash
+			fi
+}
+
+checkbar() {
+	if hash bar 2>/dev/null; then
+		echo "progress bar already installed ..."
+	else
+		if [ -d $HOME/local ]; then
+			cd $HOME/local && wgetarx http://install.hovr2pi.org/contrib/bar.tar.gz
+		else
+			mkdir $HOME/local
+				cd $HOME/local && wgetarx http://install.hovr2pi.org/contrib/bar.tar.gz
+				fi
+				ln -s $HOME/local/bar-1.4/bar $HOME/local/bin/bar
+				fi
+}
+
+checkmakedepend() {
+	if hash makedepend 2>/dev/null; then
+		echo "makedepend already installed..."
+	else
+		if hash brew 2>/dev/null; then
+			echo "you have brew so I am continuing"
+				brew install makedepend
+		else
+			echo "you must first install brew"
+				echo "for mac:"
+				echo "curl -l http://install.hovr2pi.org/homebrew | bash"
+				echo "for linux:"
+				echo "curl -l http://install.hovr2pi.org/linuxbrew | bash"
+				exit 1
+				fi
+				fi
+}
+
+
+checkbrew() {
+	if hash brew 2>/dev/null; then
+		echo "you have linuxbrew installed ... shiney"
+	else
+		curl -l http://install.hovr2pi.org/linuxbrew | bash
+		echo "export PATH=$HOME/.linuxbrew/bin:$PATH" >> $HOME/.bashrc
+		echo "export LD_LIBRARY_PATH=$HOME/.linuxbrew/lib" >> $HOME/.bashrc
+		source $HOME/.bashrc
+	fi
+}
