@@ -1,5 +1,5 @@
 INSTALLDIR=`pwd`
-TMPDIR=$HOME/src/install.helper.$$
+TMPDIR=$HOME/src/install.helper
 # uncomment set -x to enable verbose debuggins 
 # set -x
 
@@ -69,16 +69,16 @@ checkbrew() {
 	if hash brew 2>/dev/null; then
 		echo "you have brew installed ... shiney"
 	else
-		case `uname` in
-
-			Darwin)
-			ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
-			;;
-
+	case `uname` in
+	Darwin)
+		ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+		;;
 	Linux)
 		curl -l http://install.hovr2pi.org/linuxbrew | bash
 		echo "export PATH=$HOME/.linuxbrew/bin:$PATH" >> $HOME/.bashrc
 		echo "export LD_LIBRARY_PATH=$HOME/.linuxbrew/lib" >> $HOME/.bashrc
 		source $HOME/.bashrc
-		fi
+		;;
+	esac
+	fi
 }

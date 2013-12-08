@@ -1,6 +1,6 @@
 #!/bin/bash
 INSTALLDIR=`pwd`
-INSTALLHELPER=/tmp/install.helper.$$
+INSTALLHELPER=/tmp/install.helper.$USER
 
 #shell script download the install script
 
@@ -26,4 +26,4 @@ checkmakedepend
 curl -l http://install.hovr2pi.org/bin/scibrew.sh > $HOME/local/bin/scibrew.sh
 chmod +x $HOME/local/bin/scibrew.sh
 ln -s $HOME/local/bin/scibrew.sh $HOME/local/bin/scibrew
-rm /tmp/install.helper.$$
+rm /tmp/install.helper.$USER
