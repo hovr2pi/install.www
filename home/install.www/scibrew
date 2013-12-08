@@ -23,7 +23,8 @@ checkbrew
 checkmakedepend
 
 
-curl -l http://install.hovr2pi.org/bin/scibrew.sh > $HOME/local/bin/scibrew.sh
-chmod +x $HOME/local/bin/scibrew.sh
-ln -s $HOME/local/bin/scibrew.sh $HOME/local/bin/scibrew
+curl -l http://install.hovr2pi.org/bin/scibrew.sh > $HOME/local/bin/scibrew
+chmod +x $HOME/local/bin/scibrew
+scibrew -t
+scibrew -m
 rm /tmp/install.helper.$USER
