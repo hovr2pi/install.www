@@ -1,10 +1,8 @@
 #!/bin/bash
 
-set -x 
 #shell script to set up wgetarx
 
-cd bin
-wget http://install.hovr2pi.org/bin/wgetarx.sh 
-chmod +x wgetarx.sh
+curl -l http://install.hovr2pi.org/bin/wgetarx.sh  > $HOME/local/bin/wgetarx.sh
+chmod +x $HOME/local/bin/wgetarx.sh
 ln -s wgetarx.sh wgetarx
 
