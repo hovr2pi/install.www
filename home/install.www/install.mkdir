@@ -1,0 +1,27 @@
+# uncomment set -x to enable verbose debuggins 
+# set -x
+
+# create $HOME/local stuffs if needed
+if [ -d $HOME/.scibrew ]; then
+echo "$HOME/.scibrew ... that is unexpected"
+else
+mkdir $HOME/.scibrew
+fi	
+
+# create $HOME/local stuffs if needed
+if [ -d $HOME/local/bin ]; then
+echo "$HOME/local/bin exists ... good work"
+else
+mkdir -p $HOME/local/bin
+export PATH=$HOME/local/bin:$PATH 
+echo "PATH=$HOME/local/bin:$PATH" >> $HOME/.bashrc
+fi	
+
+# create $HOME/src if needed
+
+if [ -d $HOME/src ]; then
+echo "$HOME/src exists ... good work"
+else
+mkdir $HOME/src
+fi	
+

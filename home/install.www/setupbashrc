@@ -1,0 +1,8 @@
+#!/bin/bash
+# uncomment set -x to enable verbose debuggins 
+# set -x
+
+
+printf '\nsource "$HOME/.dotsplat.git/dotsplat.sh"' >> $HOME/.bashrc
+printf '\nsource "$HOME/.dotsplat.git/completions/dotsplat-completion.bash"' >> $HOME/.bashrc
+
