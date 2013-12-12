@@ -16,4 +16,4 @@ checkgit
 
 git clone git://github.com/hovr2pi/dotsplat.git $HOME/.dotsplat.git
 
-bootstrapbashrc
+bootstrapbash
