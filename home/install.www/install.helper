@@ -1,33 +1,6 @@
 # uncomment set -x to enable verbose debuggins 
 # set -x
 
-# create $HOME/local stuffs if needed
-if [ -d $HOME/.scibrew ]; then
-echo "$HOME/.scibrew ... that is unexpected"
-else
-mkdir $HOME/.scibrew
-fi	
-
-# create $HOME/local stuffs if needed
-if [ -d $HOME/local/bin ]; then
-echo "$HOME/local/bin exists ... good work"
-else
-mkdir -p $HOME/local/bin
-export PATH=$HOME/local/bin:$PATH 
-echo "PATH=$HOME/local/bin:$PATH" >> $HOME/.bashrc
-fi	
-
-# create $HOME/src if needed
-
-if [ -d $HOME/src ]; then
-echo "$HOME/src exists ... good work"
-else
-mkdir $HOME/src
-fi	
-
-export PATH=$HOME/local/bin:$PATH
-
-#function to download wgetarx 
 checkwgetarx() {
 	if hash wgetarx 2>/dev/null; then
 		echo "wgetarx already installed ..."
@@ -69,7 +42,6 @@ checkmakedepend() {
 				fi
 }
 
-
 checkbrew() {
 	if hash brew 2>/dev/null; then
 		echo "you have brew installed ... shiney"
@@ -88,23 +60,28 @@ checkbrew() {
 	fi
 }
 
-checkxcodeclitools() {
-	if hash brew 2>/dev/null; then
-		echo "you have brew installed ... shiney"
+checkgit() {
+	if hash git 2>/dev/null; then
+		echo "git installed"
 	else
-	case `uname` in
-	Darwin)
-		if hash /Applications/Xcode.app/Contents/Developer/usr/bin/xctest /dev/null; then
-		echo "xcode cli tools already installed ... well done
-		else
-		echo "xcode-select --install" | bash
-		echo "xcode cli tools now installed; rerun install"
-		echo "$ curl -l http://install.hovr2pi.org/scibrew | bash"
-		exit 1
-		;;
-	Linux)
-		echo "I don't need Xcode"
-		;;
-	esac
+	checkbrew
+	brew install git
 	fi
 }
+
+bootstrapbashrc() {
+echo ""
+echo ""
+echo "The following lines must be added to your $HOME/.bashrc"
+echo ""
+echo "source "$HOME/.dotsplat.git/completions/dotsplat-completion.bash""
+echo "source "$HOME/.dotsplat.git/dotsplat.sh""
+echo "dotsplat --quiet refresh"
+echo ""
+echo ""
+echo "Or you could run the bootstrapbashrc script provides @ install.hovr2pi
+
+$ curl -fsSL http://install.hovr2pi.org/bootstrapbash | bash"
+}
+
+

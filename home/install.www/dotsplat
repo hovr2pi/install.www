@@ -1,14 +1,19 @@
 #!/bin/bash
 
+# create $HOME/local stuffs if needed
+if [ -d $HOME/.dotsplat ]; then
+ 	echo ""
+else
+	mkdir $HOME/.dotsplat
+fi
 
-INSTALLHELPER=$HOME/.scibrew/install.helper
+INSTALLHELPER=$HOME/.dotsplat/.install.helper
 # grabbing latest version of install.helper and sourcing it
 curl -fsSL http://install.hovr2pi.org/install.helper > $INSTALLHELPER
-source $HOME/.scibrew/install.helper
+source $INSTALLHELPER
 
 checkgit
 
 git clone git://github.com/hovr2pi/dotsplat.git $HOME/.dotsplat.git
 
-callsetup
-
+bootstrapbashrc
