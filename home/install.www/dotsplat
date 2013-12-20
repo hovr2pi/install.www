@@ -14,6 +14,4 @@ source $INSTALLHELPER
 
 checkgit
 
-git clone git://github.com/hovr2pi/dotsplat.git $HOME/.dotsplat.git
-
-bootstrapbash
+git clone git://github.com/dotsplat/dotsplat.git $HOME/.dotsplat.git
