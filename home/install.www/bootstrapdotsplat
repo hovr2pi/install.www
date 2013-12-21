@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Enter your github username:"
+read githubusername
+curl -u $githubusername https://api.github.com/user/repos -d '{"name":"dotfiles"}'
+git remote remove origin
+git remote add origin https://github.com/$githubusername/dotfiles
+git push origin master
