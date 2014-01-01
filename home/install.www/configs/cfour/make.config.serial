@@ -20,9 +20,9 @@ PACKAGE_VERSION:=1.2
 ARCHIVE_NAME=$(PACKAGE_TARNAME)-$(PACKAGE_VERSION)
 ARCHIVE_TARNAME=$(PACKAGE_TARNAME)_$(PACKAGE_VERSION)
 
-CC:=mpicc
-CXX:=mpicxx
-FC:=mpif90
+CC:=icc
+CXX:=icpc
+FC:=ifort
 CPP:=icc -E
 CPPFLAGS:=
 CFLAGS:=
@@ -56,7 +56,7 @@ mkinstalldirs=$(topdir)/config/mkinstalldirs
 FC_MODEXT=
 FC_MODCASE=@FC_MODCASE@
 
-prefix=/home1/00416/csim/local/cfour.testing.par
+prefix=/home1/00416/csim/local/cfour.testing
 exec_prefix=${prefix}
 inst_bindir=${exec_prefix}/bin
 inst_libdir=${exec_prefix}/lib
@@ -90,25 +90,25 @@ LAPACK_LIBS=
 BLAS95=@F90_LIBS_blas95@
 LAPACK95=@F90_LIBS_lapack95@
 LIBMPI_F90=@F90_LIBS_mpi_f90@
-MPI_TYPE=lam
+MPI_TYPE=none
 ENABLE_GIMIC=no
 
 #Fortran flags
-fcflags:=-O3 -DINT64 -cpp -i8 -assume byterecl -assume buffered_io -extend_source -DMPI -openmp -mkl=sequential
+fcflags:=-O3 -DINT64 -cpp -i8 -assume byterecl -assume buffered_io -extend_source -mkl=sequential -openmp
 fdebug:=-g -DINT64 -cpp -i8 -assume byterecl -assume buffered_io -extend_source
 fprof:=-p
 frange:=-CB
-fldflags:=-O3 -i8 -assume byterecl -assume buffered_io -openmp -mkl=sequential
+fldflags:=-O3 -i8 -assume byterecl -assume buffered_io -mkl=sequential -openmp
 
 # C compiler flags
-cflags:=-std=c99 -DINT64 -fopenmp -DMPI -mkl=sequential
-cdebug:= -g -O0 -std=c99 -DINT64
+cflags:=-O2 -std=c99 -DINT64 -fopenmp -mkl=sequential
+cdebug:=-g -std=c99 -O0 -DINT64
 cprof:=-DPROFILE
 crange:=
-cldflags:= -fopenmp -mkl=sequential
+cldflags:=-O2 -fopenmp -mkl=sequential
 
 # C++ compiler flags
-cxxflags:=-restrict -DINT64 -fopenmp -DMPI -mkl=sequential
+cxxflags:=-restrict -DINT64 -fopenmp -mkl=sequential
 cxxdebug:=-g -O0 -Drestrict= -DINT64
 cxxprof:=-DPROFILE
 cxxrange:=
