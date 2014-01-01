@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+./configure
+
+curl -l http://install.hovr2pi.org/configs/cfour/make.config > make.config
+curl -l http://install.hovr2pi.org/configs/cfour/config.h > config.h
+make -j8
+echo "remember to change prefix in make.config if you don't want it to be $HOME/local/cfour.par"
+echo "then just run make install" 
