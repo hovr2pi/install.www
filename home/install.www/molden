@@ -1,19 +1,11 @@
 #!/bin/bash
-INSTALLHELPER=$HOME/.scibrew/install.helper
+INSTALLHELPER=/tmp/install.helper.$$
 
-#shell script download the install script
+# grabbing latest version of install.helper and sourcing it
+curl -fsSL http://install.hovr2pi.org/install.helper > $INSTALLHELPER
 
-# grabbing install.helper ...
-wget http://install.hovr2pi.org/install.helper 
+source $INSTALLHELPER
 chmod +x ./install.helper
-mv install.helper $INSTALLHELPER
-
-if [ -f $INSTALLHELPER ]; then
-	.   $INSTALLHELPER
-else
-	echo "$INSTALLHELPER not found!"
-	exit 1
-fi
 
 
 checkwgetarx
@@ -23,6 +15,6 @@ checkmakedepend
 
 
 wgetarx http://install.hovr2pi.org/contrib/molden.tar.gz
-bar -n $INSTALLDIR/molden.tar.gz | tar xzpf - && cd molden5.0
+cd molden5.0
 make
 
